@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL Teams and Stadiums</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        form {
+            width: 50%;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        select, input[type="number"] {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        select {
+            background-color: #f9f9f9;
+            padding: 5px;
+        }
+        option {
+            background-color: #fff;
+            padding: 10px;
+        }
+        #predicted-score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00698f;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 >PSL SCORE PREDICTION</h1>
+    <form action="/" method="post">
+        <label for="batting-team">Batting Team:</label>
+        <select id="batting-team" name="batting-team" required>
+            {% if batting_team %}
+                <option value="{{ batting_team }}" selected>{{ batting_team }}</option>
+            {% endif %}
+            <option value="">Select Team</option>
+            <option value="Lahore Qalandars">Lahore Qalandars</option>
+            <option value="Peshawar Zalmi">Peshawar Zalmi</option>
+            <option value="Karachi Kings">Karachi Kings</option>
+            <option value="Multan Sultans">Multan Sultans</option>
+            <option value="Islamabad United">Islamabad United</option>
+            <option value="Quetta Gladiators">Quetta Gladiators</option>
+        </select>
+        <br><br>
+        <label for="bowling-team">Bowling Team:</label>
+        <select id="bowling-team" name="bowling-team" required>
+            {% if bowling_team %}
+                <option value="{{ bowling_team }}" selected>{{ bowling_team }}</option>
+            {% endif %}
+            <option value="">Select Team</option>
+            <option value="Lahore Qalandars">Lahore Qalandars</option>
+            <option value="Peshawar Zalmi">Peshawar Zalmi</option>
+            <option value="Karachi Kings">Karachi Kings</option>
+            <option value="Multan Sultans">Multan Sultans</option>
+            <option value="Islamabad United">Islamabad United</option>
+            <option value="Quetta Gladiators">Quetta Gladiators</option>
+        </select>
+        <br><br>
+        <label for="stadium">Stadium:</label>
+        <select id="stadium" name="stadium" required>
+            {% if stadium %}
+                <option value="{{ stadium }}" selected>{{ stadium }}</option>
+            {% endif %}
+            <option value="">Select Stadium</option>
+            <option value="National Stadium, Karachi">National Stadium, Karachi</option>
+            <option value="Dubai International Cricket Stadium">Dubai International Cricket Stadium</option>
+            <option value="Gaddafi Stadium, Lahore">Gaddafi Stadium, Lahore</option>
+            <option value="Sharjah Cricket Stadium">Sharjah Cricket Stadium</option>
+            <option value="Sheikh Zayed Stadium, Abu Dhabi">Sheikh Zayed Stadium, Abu Dhabi</option>
+            <option value="Rawalpindi Cricket Stadium">Rawalpindi Cricket Stadium</option>
+            <option value="Multan Cricket Stadium">Multan Cricket Stadium</option>
+        </select>
+        <br><br>
+        <label for="over-number">Over Number:</label>
+        <input type="number" id="over-number" name="over-number" value="{{ over_number }}" required>
+        <br><br>
+        <label for="current-run">Current Run:</label>
+        <input type="number" id="current-run" name="current-run" value="{{ current_run }}" required>
+        <br><br>
+        <label for="wickets-left">Wickets Left:</label>
+        <input type="number" id="wickets-left" name="wickets-left" value="{{ wickets_left }}" required>
+        <br><br>
+        <label for="runs-till-5-over">Last 5 Over Runs:</label>
+        <input type="number" id="runs-till-5-over" name="runs-till-5-over" value="{{ runs_till_5_over }}" required>
+        <br><br>
+        <button type="submit">Predict Score</button>
+        <br><br>
+        <label>Predicted Score:</label>
+        <div id="predicted-score">{{ final_score }}</div>
+    </form>
+</body>
+</html>
